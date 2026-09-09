@@ -196,10 +196,10 @@ ul.plain strong{color:var(--ink)}
   width:8px; height:20px; aspect-ratio:auto; margin-left:4px;
 }
 .after .top_renewal_new_disabled .top_renewal_new_card{padding-right:38px}
-/* 左だけ30px：アイコンは濃く重い／矢印は細い線なので、同じ20pxでは左が詰まって見える */
-.after .top_renewal_new{padding-left:30px}
+/* 左だけ35px：アイコンは濃く重い／矢印は細い線なので、同じ20pxでは左が詰まって見える */
+.after .top_renewal_new{padding-left:35px}
 /* 見出しはボタンの左端に揃えているので一緒に動かす（SPは中央寄せなので対象外） */
-.frame-pc.after .top_renewal_new h2{left:30px}
+.frame-pc.after .top_renewal_new h2{left:35px}
 .frame-pc.after .top_renewal_new ul{gap:16px 20px}
 .frame-pc.after .top_renewal_new a,
 .frame-pc.after .top_renewal_new_card{min-height:40px}
@@ -469,8 +469,14 @@ img{max-width:100%}
   <p>アイコン画像5点を canvas に描いて不透明ピクセルの範囲を測ると、インクは箱の左端（x=0〜2px）から始まっていました。一方「〉」は疑似要素の 1px×8px の棒2本を ±45° 回転したもので、幅は約 6.4px。これが 20px 角の箱の中央に置かれるため、右側に 6.3px の空きが残ります。</p>
   <div class="note"><strong>対処：</strong>矢印の箱を <code class="inl">20px → 8px</code> にして、字形の右端を箱の右端に一致させました。高さ 20px は字形の縦位置（<code class="inl">top:3px</code> / <code class="inl">bottom:3px</code>）を壊さないため維持しています。結果、見た目の余白は <strong>左 16.0px / 右 16.3px</strong> になります。</div>
 
-  <h3 class="sub">紫枠の左だけ 30px にしている理由</h3>
-  <p>ボタンの左右の余白を数値上そろえても、<strong>左のほうが詰まって見えます。</strong>左端のアイコンは濃くて密度の高いグラフィック、右端の「〉」は細い線1本で、視覚的な重さが違うためです。重い側の余白を多めに取るのが定石なので、紫枠の左の内側余白だけ <code class="inl">20px → 30px</code> にしています。</p>
+  <h3 class="sub">紫枠の左だけ 35px にしている理由</h3>
+  <p>ボタンの左右の余白を数値上そろえても、<strong>左のほうが詰まって見えます。</strong>左端のアイコンは濃くて密度の高いグラフィック、右端の「〉」は細い線1本で、視覚的な重さが違うためです。重い側の余白を多めに取るのが定石なので、紫枠の左の内側余白だけ <code class="inl">20px → 35px</code> にしています。</p>
+  <div class="note caution"><strong>PC 2列目のボタンだけ、左側が20pxのままです。</strong>
+    1列目のボタンの左は紫枠の padding（35px）ですが、2列目のボタンの左は「列間」（20px）です。別の値なので揃っていません。
+    列間も35pxにすると1列目・2列目とも左35pxで統一できますが、ボタンが5px細くなり
+    「ファンシー」の残り余裕が SP 28.9px → さらに縮んで省略（…）が出るおそれがあります。
+    揃えたい場合は、先に右側（「締切」バッジの左右 6px→4px、日付↔矢印 14px→10px）を詰めて余裕を作ってから変更してください。</div>
+
   <div class="note"><strong>ここは意図的な非対称です。</strong>左右を同じ20pxに戻すと、また左が詰まって見えます。数値をそろえるより見た目の釣り合いを優先しているので、そのまま入れてください。上・右・下の 20px は変えていないため、枠の外寸は縦横どちらも変わりません。</div>
 
   <h3 class="sub">もう1つ見つかった問題：日付の右端が行ごとに揃っていない</h3>
@@ -489,8 +495,8 @@ img{max-width:100%}
   <div class="tbl"><table>
     <thead><tr><th>箇所</th><th class="num">変更前</th><th class="num">変更後</th><th>理由</th></tr></thead>
     <tbody>
-      <tr><td><strong>紫枠の左の内側余白</strong></td><td class="num was">20px</td><td class="num now">30px</td><td><strong>左右同値だと左が詰まって見えるため（下記の注記）。右・上・下は20pxのまま</strong></td></tr>
-      <tr><td>見出し「新商品案内」の左位置（PC）</td><td class="num was">20px</td><td class="num now">30px</td><td>ボタンの左端に揃えているので一緒に動かす</td></tr>
+      <tr><td><strong>紫枠の左の内側余白</strong></td><td class="num was">20px</td><td class="num now">35px</td><td><strong>左右同値だと左が詰まって見えるため（下記の注記）。右・上・下は20pxのまま</strong></td></tr>
+      <tr><td>見出し「新商品案内」の左位置（PC）</td><td class="num was">20px</td><td class="num now">35px</td><td>ボタンの左端に揃えているので一緒に動かす</td></tr>
       <tr><td>ボタン左右の内側余白</td><td class="num was">10px</td><td class="num now">16px</td><td>アイコンと矢印が丸ピルの縁に張り付いていた</td></tr>
       <tr><td>矢印の箱の幅</td><td class="num was">20px</td><td class="num now">8px</td><td>見た目の左右余白を揃える（上記01）</td></tr>
       <tr><td>「次回案内」カードの右余白</td><td class="num was">10px</td><td class="num now">38px</td><td>矢印ぶんを確保し日付の右端を揃える</td></tr>
@@ -498,7 +504,7 @@ img{max-width:100%}
       <tr><td>「締切」バッジ左右</td><td class="num was">4px</td><td class="num now">6px</td><td>赤い箱が文字に張り付き硬い。角丸3pxも追加</td></tr>
       <tr><td>バッジ ↔ 日付</td><td class="num was">8px</td><td class="num now">6px</td><td>逆に縮めて「締切＋日付」を1グループに見せる</td></tr>
       <tr><td>日付 ↔ 矢印</td><td class="num was">8px</td><td class="num now">14px</td><td>3要素が等間隔でかたまりが読めなかった</td></tr>
-      <tr><td><strong>列間（PC）</strong></td><td class="num was">10px</td><td class="num now">20px</td><td><strong>紫枠の左右 padding（20px）と同じ値に揃えた</strong></td></tr>
+      <tr><td><strong>列間（PC）</strong></td><td class="num was">10px</td><td class="num now">20px</td><td><strong>紫枠の右 padding（20px）と同値。※左は35pxなので、PC2列目のボタンの左側は20pxのまま（下記の注記）</strong></td></tr>
       <tr><td>行間（PC）</td><td class="num was">10px</td><td class="num now">16px</td><td>下向き4pxの影が食い込み実質6pxに見えていた</td></tr>
       <tr><td>ボタン最小高（PC）</td><td class="num was">44px</td><td class="num keep">40px</td><td>行間で増える縦12pxを相殺し枠の高さ192pxを維持</td></tr>
       <tr><td><strong>行間（SP）</strong></td><td class="num was">10px</td><td class="num now">15px</td><td><strong>枠は300→320pxに伸びる（20 + 5×44 + 4×15 + 20 = 320px）</strong></td></tr>
@@ -540,10 +546,10 @@ img{max-width:100%}
 <span class="dl-ctx"> 	border-radius: 10px;</span>
 <span class="dl-ctx"> 	position: relative;</span>
 <span class="dl-del">-	padding: 20px 20px 20px;</span>
-<span class="dl-add">+	/* 左だけ30px。アイコン（濃く密度が高い）と矢印（細い線1本）では視覚的な重さが</span>
+<span class="dl-add">+	/* 左だけ35px。アイコン（濃く密度が高い）と矢印（細い線1本）では視覚的な重さが</span>
 <span class="dl-add">+	   違うため、左右を同じ20pxにすると左のほうが詰まって見える。重い側の余白を</span>
-<span class="dl-add">+	   10px多く取って見た目の釣り合いを取っている。右・上・下は20pxのまま。 */</span>
-<span class="dl-add">+	padding: 20px 20px 20px 30px;</span>
+<span class="dl-add">+	   15px多く取って見た目の釣り合いを取っている。右・上・下は20pxのまま。 */</span>
+<span class="dl-add">+	padding: 20px 20px 20px 35px;</span>
 <span class="dl-ctx"> 	min-height: 130px;</span>
 <span class="dl-ctx"> }</span>
 <span class="dl-ctx"> </span>
@@ -553,7 +559,7 @@ img{max-width:100%}
 <span class="dl-ctx"> 	top: -10px;</span>
 <span class="dl-del">-	left: 20px;</span>
 <span class="dl-add">+	/* ボタンの左端に揃えるため、枠の padding-left と同じ値にする */</span>
-<span class="dl-add">+	left: 30px;</span>
+<span class="dl-add">+	left: 35px;</span>
 <span class="dl-ctx"> 	margin: 0;</span>
 <span class="dl-ctx"> }</span>
 <span class="dl-ctx"> </span>
@@ -691,7 +697,7 @@ img{max-width:100%}
       <tr><td>分類名の省略（…）</td><td class="num now">なし</td><td class="num now">なし</td></tr>
     </tbody>
   </table></div>
-  <p class="tight" style="font-size:13.5px; color:var(--ink-3)">適用前の値：見た目の左右余白 左 16.0px / 右 22.3px、日付の右端 38px / 10px でバラバラ。最も窮屈な組合せ（最長名「ファンシー」×最長バッジ「次回案内」）でも 33.9px の余裕があり、省略は発生しません。この差分を元ファイルに実際に当てたものを計測しており、机上の値ではありません。</p>
+  <p class="tight" style="font-size:13.5px; color:var(--ink-3)">適用前の値：見た目の左右余白 左 16.0px / 右 22.3px、日付の右端 38px / 10px でバラバラ。最も窮屈な組合せ（最長名「ファンシー」×最長バッジ「次回案内」）でも 28.9px の余裕があり、省略は発生しません。この差分を元ファイルに実際に当てたものを計測しており、机上の値ではありません。</p>
 </section>
 
 <section>
